@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -12,8 +13,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('kaiju_attack_log')
 
-attack_data = SHEET.worksheet('attack_data')
+def get_date_data():
+    """
+    Get date of Kaiju attack input from the user
+    """
+    print("Please enter date of Kaiju attack.")
+    print("Date format should be dd/mm/yyyy.")
+    print("Example: 01/01/2024\n")
 
-data = attack_data.get_all_values()
+    data_str = input("Enter date of Kaiju attack here:")
+    print(f"Confirmed, date of attack is {data_str}")
 
-print(data)
+get_date_data()
