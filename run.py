@@ -21,7 +21,21 @@ def get_date_data():
     print("Date format should be dd/mm/yyyy.")
     print("Example: 01/01/2024\n")
 
-    data_str = input("Enter date of Kaiju attack here:")
-    print(f"Confirmed, date of attack is {data_str}")
+    data_str = input("Enter date of Kaiju attack here: ")
+
+    if validate_date(data_str):
+        print(f"Confirmed, date of attack is {data_str}")
+    else:
+        print("Invalid date format. Please try again.")
+
+def validate_date(date_str):
+    """
+    Raises ValueError if the date input is not in required format
+    """
+    try:
+        datetime.strptime(date_str, '%d/%m/%Y')
+        return True
+    except ValueError:
+        return False
 
 get_date_data()
