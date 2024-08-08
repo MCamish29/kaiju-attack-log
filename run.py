@@ -60,16 +60,39 @@ def update_attack_log(data):
 
 def get_threat_data():
     """
-    Get the threat level of Kaiju attack input from user.
+    Get the threat level of Kaiju attack input from the user.
+    Run a while loop to collect a valid threat level (1-5) from the user.
+    The loop will repeat until a valid input is provided.
     """
-    print("Please enter threat level of Kaiju attack.")
-    print("Threat level is 1 to 5")
-    print("1 is lowest threat and 5 is highest threat level\n")
+    while True:
+        print("Please enter the threat level of Kaiju attack.")
+        print("Threat level is between 1 and 5.")
+        print("1 is the lowest threat and 5 is the highest threat level\n")
 
-    threat_str = input("Enter threat level of Kaiju attack here: ")
-    print(threat_str)
+        threat_str = input("Enter threat level of Kaiju attack here: ")
 
-    
+        if validate_threat_level(threat_str):
+            print(f"Confirmed, threat level of Kaiju attack is {threat_str}\n")
+            break
+
+    return int(threat_str)  # return as an integer
+
+
+def validate_threat_level(threat_str):
+    """
+    Validates that the threat level input is a number between 1 and 5.
+    Raises ValueError if the input is not within this range.
+    """
+    try:
+        threat_level = int(threat_str)
+        if 1 <= threat_level <= 5:
+            return True
+        else:
+            print('\033[31m' + "Invalid threat level. Please enter a number between 1 and 5.\n")
+            return False
+    except ValueError:
+        print('\033[31m' + "Invalid input. Please enter a number between 1 and 5.\n")
+        return False
 
 data = get_date_data()
 update_attack_log(data)
