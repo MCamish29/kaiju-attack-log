@@ -2,14 +2,15 @@ import gspread
 import colorama
 from google.oauth2.service_account import Credentials
 from colorama import Fore, Back, Style
-colorama.init(autoreset=True)
 from datetime import datetime
+
+colorama.init(autoreset=True)
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -34,9 +35,8 @@ def get_date_data():
             print(f"Confirmed, date of Kaiju attack is {date_str}\n")
             break
 
-    return date_str           
-            
-    
+    return date_str
+
 def validate_date(date_str):
     """
     Raises ValueError if the date input is not in required format
@@ -47,16 +47,16 @@ def validate_date(date_str):
         return True
     except ValueError:
         print('\033[31m'+"Invalid date format. Please try again.\n")
-        return False    
-    
-def update_attack_log(data):
+        return False
+
+def update_attack_log(date, threat_level):
     """
-    Updates Kaiju attack log to add date in relevant column
+    Updates Kaiju attack log to add date and threat level in relevant columns.
     """
-    print("Importing date of Kaiju attack to log...\n")
-    date_attack_log = SHEET.worksheet("attack_data")
-    date_attack_log.append_row([data])
-    print("Date of Kaiju attack logged successfully.\n")
+    print("Importing date and threat level of Kaiju attack to log...\n")
+    attack_log_worksheet = SHEET.worksheet("attack_data")
+    attack_log_worksheet.append_row([date, threat_level])
+    print("Date and threat level of Kaiju attack logged successfully.\n")
 
 def get_threat_data():
     """
@@ -77,7 +77,6 @@ def get_threat_data():
 
     return int(threat_str)  # return as an integer
 
-
 def validate_threat_level(threat_str):
     """
     Validates that the threat level input is a number between 1 and 5.
@@ -94,6 +93,7 @@ def validate_threat_level(threat_str):
         print('\033[31m' + "Invalid input. Please enter a number between 1 and 5.\n")
         return False
 
-data = get_date_data()
-update_attack_log(data)
-get_threat_data()
+# Main flow
+date = get_date_data()
+threat_level = get_threat_data()
+update_attack_log(date, threat_level)
