@@ -1,5 +1,8 @@
 import gspread
+import colorama
 from google.oauth2.service_account import Credentials
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 from datetime import datetime
 
 SCOPE = [
@@ -37,12 +40,13 @@ def get_date_data():
 def validate_date(date_str):
     """
     Raises ValueError if the date input is not in required format
+    Colorama flags error message in red to signal to user of error
     """
     try:
         datetime.strptime(date_str, '%d/%m/%Y')
         return True
     except ValueError:
-        print("Invalid date format. Please try again.\n")
+        print('\033[31m'+"Invalid date format. Please try again.\n")
         return False
     
 def update_attack_log(data):
