@@ -28,13 +28,13 @@ def get_date_data():
         print("Date format should be dd/mm/yyyy.")
         print("Example: 01/01/2024\n")
 
-        data_str = input("Enter date of Kaiju attack here: ")
+        date_str = input("Enter date of Kaiju attack here: ")
 
-        if validate_date(data_str):
-            print(f"Confirmed, date of Kaiju attack is {data_str}")
+        if validate_date(date_str):
+            print(f"Confirmed, date of Kaiju attack is {date_str}\n")
             break
 
-    return data_str           
+    return date_str           
             
     
 def validate_date(date_str):
@@ -47,7 +47,7 @@ def validate_date(date_str):
         return True
     except ValueError:
         print('\033[31m'+"Invalid date format. Please try again.\n")
-        return False
+        return False    
     
 def update_attack_log(data):
     """
@@ -58,8 +58,19 @@ def update_attack_log(data):
     date_attack_log.append_row([data])
     print("Date of Kaiju attack logged successfully.\n")
 
+def get_threat_data():
+    """
+    Get the threat level of Kaiju attack input from user.
+    """
+    print("Please enter threat level of Kaiju attack.")
+    print("Threat level is 1 to 5")
+    print("1 is lowest threat and 5 is highest threat level\n")
 
+    threat_str = input("Enter threat level of Kaiju attack here: ")
+    print(threat_str)
 
+    
 
 data = get_date_data()
 update_attack_log(data)
+get_threat_data()
