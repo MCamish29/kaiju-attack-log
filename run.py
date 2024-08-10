@@ -32,7 +32,7 @@ def get_date_data():
         date_str = input("Enter date of Kaiju attack here: ")
 
         if validate_date(date_str):
-            print(f"Confirmed, date of Kaiju attack is {date_str}\n")
+            print(Fore.GREEN + f"Confirmed, date of Kaiju attack is {date_str}\n")
             break
 
     return date_str
@@ -72,7 +72,7 @@ def get_threat_data():
         threat_str = input("Enter threat level of Kaiju attack here: ")
 
         if validate_threat_level(threat_str):
-            print(f"Confirmed, threat level of Kaiju attack is {threat_str}\n")
+            print(Fore.GREEN + f"Confirmed, threat level of Kaiju attack is {threat_str}\n")
             break
 
     return int(threat_str)  # return as an integer
@@ -117,7 +117,7 @@ def get_region_data():
 
         if validate_region(region_str):
             region_name = region[region_str]
-            print(f"Confirmed, region of Kaiju attack is {region_name}\n")
+            print(Fore.GREEN + f"Confirmed, region of Kaiju attack is {region_name}\n")
             return region_name
 
 def validate_region(region_str):
