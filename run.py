@@ -29,7 +29,7 @@ def get_date_data():
         print("Date format should be dd/mm/yyyy.")
         print("Example: 01/01/2024\n")
 
-        date_str = input("Enter date of Kaiju attack here: ")
+        date_str = input("Enter date of Kaiju attack here: ").strip()
 
         if validate_date(date_str):
             print(Fore.GREEN + f"Confirmed, date of Kaiju attack is {date_str}\n")
@@ -49,15 +49,6 @@ def validate_date(date_str):
         print('\033[31m'+"Invalid date format. Please try again.\n")
         return False
 
-def update_attack_log(date, threat_level):
-    """
-    Updates Kaiju attack log to add date and threat level in relevant columns.
-    """
-    print("Importing date and threat level of Kaiju attack to log...\n")
-    attack_log_worksheet = SHEET.worksheet("attack_data")
-    attack_log_worksheet.append_row([date, threat_level])
-    print("Date and threat level of Kaiju attack logged successfully.\n")
-
 def get_threat_data():
     """
     Get the threat level of Kaiju attack input from the user.
@@ -69,7 +60,7 @@ def get_threat_data():
         print("Threat level is between 1 and 5.")
         print("1 is the lowest threat and 5 is the highest threat level\n")
 
-        threat_str = input("Enter threat level of Kaiju attack here: ")
+        threat_str = input("Enter threat level of Kaiju attack here: ").strip()
 
         if validate_threat_level(threat_str):
             print(Fore.GREEN + f"Confirmed, threat level of Kaiju attack is {threat_str}\n")
@@ -113,7 +104,7 @@ def get_region_data():
         print("Select the number associated with the relevant region:")
         print("1 = Asakusa, 2 = Ginza, 3 = Harajuku, 4 = Shibuya, 5 = Shinjuku, 6 = Other\n")
 
-        region_str = input("Enter the region of Kaiju attack here: ")
+        region_str = input("Enter the region of Kaiju attack here: ").strip()
 
         if validate_region(region_str):
             region_name = region[region_str]
@@ -135,12 +126,18 @@ def validate_region(region_str):
     except ValueError:
         print('\033[31m' + "Invalid input. Please enter a valid number between 1 and 6.\n")
         return False
-
+    
+def update_attack_log(date, threat_level, region_name):
+    """
+    Updates Kaiju attack log to add date, threat level, and region name in relevant columns.
+    """
+    print("Importing date, threat level, and region of Kaiju attack to log...\n")
+    attack_log_worksheet = SHEET.worksheet("attack_data")
+    attack_log_worksheet.append_row([date, threat_level, region_name])
+    print(Fore.GREEN + "Kaiju attack logged successfully.\n")
 
 # Main flow
 date = get_date_data()
 threat_level = get_threat_data()
 region_name = get_region_data()
-update_attack_log(date, threat_level)
-    
-
+update_attack_log(date, threat_level, region_name)
