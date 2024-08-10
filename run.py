@@ -92,8 +92,40 @@ def validate_threat_level(threat_str):
     except ValueError:
         print('\033[31m' + "Invalid input. Please enter a number between 1 and 5.\n")
         return False
+    
+region = {
+    "1": "Asakusa",
+    "2": "Ginza",
+    "3": "Harajuku",
+    "4": "Shibuya",
+    "5": "Shinjuku",
+    "6": "Other"
+}
+
+def get_region_data():
+    """
+    Get the region of Kaiju attack input from the user.
+    Run a while loop to collect a valid region (1-6) from the user.
+    The loop will repeat until a valid input is provided.
+    """
+    while True:
+        print("Please enter the region of Kaiju attack.")
+        print("Select the number associated with the relevant region:")
+        print("1 = Asakusa, 2 = Ginza, 3 = Harajuku, 4 = Shibuya, 5 = Shinjuku, 6 = Other\n")
+
+        region_str = input("Enter the region of Kaiju attack here: ")
+
+        if region_str in region:
+            region_name = region[region_str]
+            print(f"Confirmed, region of Kaiju attack is {region_name}\n")
+            return region_name
+        else:
+            print('\033[31m' + "Invalid input. Please enter a number between 1 and 6.\n")
 
 # Main flow
 date = get_date_data()
 threat_level = get_threat_data()
+region_name = get_region_data()
 update_attack_log(date, threat_level)
+    
+
