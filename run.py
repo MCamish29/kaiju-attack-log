@@ -115,12 +115,27 @@ def get_region_data():
 
         region_str = input("Enter the region of Kaiju attack here: ")
 
-        if region_str in region:
+        if validate_region(region_str):
             region_name = region[region_str]
             print(f"Confirmed, region of Kaiju attack is {region_name}\n")
             return region_name
+
+def validate_region(region_str):
+    """
+    Validates that the region input is a number between 1 and 6.
+    Raises ValueError if the input is not within this range.
+    """
+    try:
+        region_num = int(region_str)
+        if 1 <= region_num <= 6:
+            return True
         else:
-            print('\033[31m' + "Invalid input. Please enter a number between 1 and 6.\n")
+            print('\033[31m' + "Invalid region number. Please enter a number between 1 and 6.\n")
+            return False
+    except ValueError:
+        print('\033[31m' + "Invalid input. Please enter a valid number between 1 and 6.\n")
+        return False
+
 
 # Main flow
 date = get_date_data()
