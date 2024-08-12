@@ -17,6 +17,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('kaiju_attack_log')
 
+REGION = {
+    "1": "Asakusa",
+    "2": "Ginza",
+    "3": "Harajuku",
+    "4": "Shibuya",
+    "5": "Shinjuku",
+    "6": "Other"
+}
+
 def get_date_data():
     """
     Get date of Kaiju attack input from the user.
@@ -32,7 +41,8 @@ def get_date_data():
         date_str = input("Enter date of Kaiju attack here: ").strip()
 
         if validate_date(date_str):
-            print(Fore.GREEN + f"Confirmed, date of Kaiju attack is {date_str}\n")
+            print(Fore.GREEN 
+                  + f"Confirmed, date of Kaiju attack is {date_str}\n")
             break
 
     return date_str
@@ -84,14 +94,7 @@ def validate_threat_level(threat_str):
         print('\033[31m' + "Invalid input. Please enter a number between 1 and 5.\n")
         return False
     
-region = {
-    "1": "Asakusa",
-    "2": "Ginza",
-    "3": "Harajuku",
-    "4": "Shibuya",
-    "5": "Shinjuku",
-    "6": "Other"
-}
+
 
 def get_region_data():
     """
@@ -107,7 +110,7 @@ def get_region_data():
         region_str = input("Enter the region of Kaiju attack here: ").strip()
 
         if validate_region(region_str):
-            region_name = region[region_str]
+            region_name = REGION[region_str]
             print(Fore.GREEN + f"Confirmed, region of Kaiju attack is {region_name}\n")
             return region_name
 
@@ -137,7 +140,11 @@ def update_attack_log(date, threat_level, region_name):
     print(Fore.GREEN + "Kaiju attack logged successfully.\n")
 
 # Main flow
-date = get_date_data()
-threat_level = get_threat_data()
-region_name = get_region_data()
-update_attack_log(date, threat_level, region_name)
+def attack_log():
+    date = get_date_data()
+    threat_level = get_threat_data()
+    region_name = get_region_data()
+    update_attack_log(date, threat_level, region_name)
+    
+
+attack_log()
