@@ -140,6 +140,22 @@ def update_attack_log(date, threat_level, region_name):
     print(Fore.GREEN + "Kaiju attack logged successfully.\n")
 
 # Main flow
+def start_program():
+    print("Welcome to the Kaiju attack log terminal\n")
+    print("This terminal is designed to log reports of Kaiju attacks in Tokyo.")
+    start_program_str = input("To log a new entry please enter 'new', to display the previous entry please enter 'return': ").strip().lower()
+    print()
+    if start_program_str == "new":
+        attack_log()
+    elif start_program_str == "return":
+        # Add the code to display the previous entry here (currently not implemented)
+        print("Returning previous entry (functionality not implemented yet).\n")
+    else:
+        print("Invalid input. Please enter 'New' or 'return'.\n")
+        start_program()  # Restart the program if input is invalid
+
+
+
 def attack_log():
     date = get_date_data()
     threat_level = get_threat_data()
@@ -147,4 +163,6 @@ def attack_log():
     update_attack_log(date, threat_level, region_name)
     
 
-attack_log()
+
+if __name__ =="__main__":
+    start_program()
