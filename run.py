@@ -26,11 +26,12 @@ REGION = {
     "6": "Other"
 }
 
+
 def get_date_data():
     """
     Get date of Kaiju attack input from the user.
     Run a while loop to collect valid date format from the user
-    via terminal. The loop will repeat to request data, 
+    via terminal. The loop will repeat to request data,
     until it is valid.
     """
     while True:
@@ -41,11 +42,12 @@ def get_date_data():
         date_str = input("Enter date of Kaiju attack here: ").strip()
 
         if validate_date(date_str):
-            print(Fore.GREEN 
+            print(Fore.GREEN
                   + f"Confirmed, date of Kaiju attack is {date_str}\n")
             break
 
     return date_str
+
 
 def validate_date(date_str):
     """
@@ -58,6 +60,7 @@ def validate_date(date_str):
     except ValueError:
         print('\033[31m'+"Invalid date format. Please try again.\n")
         return False
+
 
 def get_threat_data():
     """
@@ -73,10 +76,13 @@ def get_threat_data():
         threat_str = input("Enter threat level of Kaiju attack here: ").strip()
 
         if validate_threat_level(threat_str):
-            print(Fore.GREEN + f"Confirmed, threat level of Kaiju attack is {threat_str}\n")
+            print(Fore.GREEN
+                  + f"Confirmed, threat level of Kaiju attack is {threat_str}")
+            print()
             break
 
     return int(threat_str)  # return as an integer
+
 
 def validate_threat_level(threat_str):
     """
@@ -88,12 +94,16 @@ def validate_threat_level(threat_str):
         if 1 <= threat_level <= 5:
             return True
         else:
-            print('\033[31m' + "Invalid threat level. Please enter a number between 1 and 5.\n")
+            print('\033[31m'
+                  + "Invalid threat level."
+                  + "Please enter a number between 1 and 5")
+            print()
             return False
     except ValueError:
-        print('\033[31m' + "Invalid input. Please enter a number between 1 and 5.\n")
+        print('\033[31m'
+              + "Invalid input."
+              + "Please enter a number between 1 and 5.\n")
         return False
-    
 
 
 def get_region_data():
@@ -105,14 +115,21 @@ def get_region_data():
     while True:
         print("Please enter the region of Kaiju attack.")
         print("Select the number associated with the relevant region:")
-        print("1 = Asakusa, 2 = Ginza, 3 = Harajuku, 4 = Shibuya, 5 = Shinjuku, 6 = Other\n")
+        print("1 = Asakusa, "
+              + "2 = Ginza, "
+              + "3 = Harajuku, "
+              + "4 = Shibuya, "
+              + "5 = Shinjuku, "
+              + "6 = Other\n")
 
         region_str = input("Enter the region of Kaiju attack here: ").strip()
 
         if validate_region(region_str):
             region_name = REGION[region_str]
-            print(Fore.GREEN + f"Confirmed, region of Kaiju attack is {region_name}\n")
+            print(Fore.GREEN
+                  + f"Confirmed, region of Kaiju attack is {region_name}\n")
             return region_name
+
 
 def validate_region(region_str):
     """
@@ -124,20 +141,29 @@ def validate_region(region_str):
         if 1 <= region_num <= 6:
             return True
         else:
-            print('\033[31m' + "Invalid region number. Please enter a number between 1 and 6.\n")
+            print('\033[31m'
+                  + "Invalid region number. "
+                  + "Please enter a number between 1 and 6.\n")
             return False
     except ValueError:
-        print('\033[31m' + "Invalid input. Please enter a valid number between 1 and 6.\n")
+        print('\033[31m'
+              + "Invalid input. "
+              + "Please enter a valid number between 1 and 6.\n")
         return False
-    
+
+
 def update_attack_log(date, threat_level, region_name):
     """
-    Updates Kaiju attack log to add date, threat level, and region name in relevant columns.
+    Updates Kaiju attack log
+    Function will add date, threat level, and region name in relevant columns.
     """
-    print("Importing date, threat level, and region of Kaiju attack to log...\n")
+    print("Importing date, "
+          + "threat level, "
+          + "and region of Kaiju attack to log...\n")
     attack_log_worksheet = SHEET.worksheet("attack_data")
     attack_log_worksheet.append_row([date, threat_level, region_name])
     print(Fore.GREEN + "Kaiju attack logged successfully.\n")
+
 
 def return_last_entry():
     """
@@ -156,14 +182,18 @@ def start_program():
     """
 
     print("Welcome to the Kaiju attack log terminal\n")
-    print("This terminal is designed to log reports of Kaiju attacks in Tokyo.\n")
-    print("If you select to enter a new entry you will be required to enter the following criteria:")
+    print("This terminal is designed to"
+          + "log reports of Kaiju attacks in Tokyo.\n")
+    print("If you select to enter a new entry "
+          + "you will be required to enter the following criteria:")
     print("'date' in dd/mm/yyyy format,")
     print("'threat level' ranging from 1 to 5,")
     print("'region of attack'\n")
-    start_program_str = input("To log a new entry please enter 'new', to display the previous entry please enter 'return': ").strip().lower()
+    start_program_str = input("To log a new entry please enter 'new', "
+                              + "to display the previous entry"
+                              + "please enter 'return': ").strip().lower()
     print()
-   
+
     if start_program_str == "new":
         attack_log()
     elif start_program_str == "return":
@@ -176,28 +206,33 @@ def start_program():
         print('\033[31m' + "Invalid input. Please enter 'new' or 'return'.\n")
         start_program()  # Restart the program if input is invalid
 
+
 def attack_log():
     date = get_date_data()
     threat_level = get_threat_data()
     region_name = get_region_data()
     update_attack_log(date, threat_level, region_name)
     additional_entry()
-    
+
+
 def additional_entry():
     """
     Allows to user to enter additional entry or return to main menu
     if, elif and else being used for validation.
     """
     print("Would you like to log another attack?")
-    additional_entry_str = input("Please enter 'Y' to log another attack or 'N' to return to menu: ").strip().lower()
+    additional_entry_str = input("Please enter 'Y' to log another attack "
+                                 + "or 'N' to return "
+                                 + "to menu: ").strip().lower()
     print()
     if additional_entry_str == "y":
         attack_log()
     elif additional_entry_str == "n":
         start_program()
     else:
-        print('\033[31m' + "Invalid input. Please enter 'Y' or 'N'.\n")    
+        print('\033[31m' + "Invalid input. Please enter 'Y' or 'N'.\n")
         additional_entry()
 
-if __name__ =="__main__":
+
+if __name__ == "__main__":
     start_program()
