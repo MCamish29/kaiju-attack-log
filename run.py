@@ -167,21 +167,37 @@ def start_program():
     if start_program_str == "new":
         attack_log()
     elif start_program_str == "return":
-        # Add the code to display the previous entry here (currently not implemented)
-        print("Returning previous entry (functionality not implemented yet).\n")
+        last_entry = return_last_entry()
+        print("Returning previous entry:\n")
+        print(f"Date: {last_entry[0]}")
+        print(f"Threat Level: {last_entry[1]}")
+        print(f"Region: {last_entry[2]}\n")
     else:
-        print("Invalid input. Please enter 'New' or 'return'.\n")
+        print('\033[31m' + "Invalid input. Please enter 'new' or 'return'.\n")
         start_program()  # Restart the program if input is invalid
-
-
 
 def attack_log():
     date = get_date_data()
     threat_level = get_threat_data()
     region_name = get_region_data()
     update_attack_log(date, threat_level, region_name)
+    additional_entry()
     
-
+def additional_entry():
+    """
+    Allows to user to enter additional entry or return to main menu
+    if, elif and else being used for validation.
+    """
+    print("Would you like to log another attack?")
+    additional_entry_str = input("Please enter 'Y' to log another attack or 'N' to return to menu: ").strip().lower()
+    print()
+    if additional_entry_str == "y":
+        attack_log()
+    elif additional_entry_str == "n":
+        start_program()
+    else:
+        print('\033[31m' + "Invalid input. Please enter 'Y' or 'N'.\n")    
+        additional_entry()
 
 if __name__ =="__main__":
     start_program()
