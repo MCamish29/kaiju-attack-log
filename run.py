@@ -141,10 +141,20 @@ def update_attack_log(date, threat_level, region_name):
 
 # Main flow
 def start_program():
+    """
+    Greets users with an introduction to the terminal.
+    Instructions are displayed for what the user can expect.
+    """
+
     print("Welcome to the Kaiju attack log terminal\n")
-    print("This terminal is designed to log reports of Kaiju attacks in Tokyo.")
+    print("This terminal is designed to log reports of Kaiju attacks in Tokyo.\n")
+    print("If you select to enter a new entry you will be required to enter the following criteria:")
+    print("'date' in dd/mm/yyyy format,")
+    print("'threat level' ranging from 1 to 5,")
+    print("'region of attack'\n")
     start_program_str = input("To log a new entry please enter 'new', to display the previous entry please enter 'return': ").strip().lower()
     print()
+   
     if start_program_str == "new":
         attack_log()
     elif start_program_str == "return":
