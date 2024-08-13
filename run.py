@@ -139,6 +139,15 @@ def update_attack_log(date, threat_level, region_name):
     attack_log_worksheet.append_row([date, threat_level, region_name])
     print(Fore.GREEN + "Kaiju attack logged successfully.\n")
 
+def return_last_entry():
+    """
+    Returns the last entry from the 'attack_data' worksheet.
+    """
+    attack_log_worksheet = SHEET.worksheet("attack_data")
+    last_entry = attack_log_worksheet.get_all_values()[-1]
+    return last_entry
+
+
 # Main flow
 def start_program():
     """
