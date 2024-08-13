@@ -172,7 +172,7 @@ def return_last_entry():
     attack_log_worksheet = SHEET.worksheet("attack_data")
     last_entry = attack_log_worksheet.get_all_values()[-1]
     return last_entry
-
+    
 
 # Main flow
 def start_program():
@@ -202,6 +202,7 @@ def start_program():
         print(f"Date: {last_entry[0]}")
         print(f"Threat Level: {last_entry[1]}")
         print(f"Region: {last_entry[2]}\n")
+        additional_entry()
     else:
         print('\033[31m' + "Invalid input. Please enter 'new' or 'return'.\n")
         start_program()  # Restart the program if input is invalid
