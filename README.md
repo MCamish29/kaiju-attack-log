@@ -11,20 +11,18 @@ The Kaiju Attack Log is an interactive terminal to enter details of Kaiju attack
 
 * [Program Flow Chart](#program-flow-chart)
 
-* [Features]()
-    * [Program start]()
-    * [New Entry to Kaiju attack log]()
-        * [Date entry]()
-        * [Threat level entry]()
-        * [Region entry]()
-    * [Additional entry]()
-    * [Return last entry]()
+* [Features](#features)
+    * [Program start](#program-start)
+    * [New entry to Kaiju attack log](#new-entry-to-kaiju-attack-log)
+    * [Additional entry](#additional-entry)
+    * [Return last entry](#return-last-entry)
 
-* [Future Enhancements]()
-* [Testing]()
-* [Libraries]()
-* [Technologies Used]()
-* [Deployment]()
+* [Future Enhancements](#future-enhancements)
+* [Testing](#testing)
+* [Bugs and debugging]()
+* [Libraries](#libraries)
+* [Technologies Used](#technologies-used)
+* [Deployment](#deployment)
 
 
 
@@ -34,13 +32,25 @@ The Kaiju Attack Log is an interactive terminal to enter details of Kaiju attack
 
 To understand the structure of the program, I created a flow chart using [Lucid Charts](https://lucid.app)
 
-![Kaiju attack log flowchart](assets/readme_images/flow.webp)
+![Kaiju_attack_log_flowchart](assets/readme_images/flow.webp)
 
 # Features
 
 ## Program start
 
+![Program_start](assets/readme_images/start_program.webp)
 
+## New entry to Kaiju attack log
+
+![date_input](assets/readme_images/date_threat_region.webp)
+
+## Additional entry
+![additional_entry](assets/readme_images/additonal_entry.webp)
+
+## Return last entry
+![return_last_entry](assets/readme_images/return_last_entry.webp)
+
+# Future Enhancements
 
 # Testing
 **Function**|**Test**|**Test Version**|**Expectation**|**Result**
@@ -62,3 +72,9 @@ update\_attack\_log|Worksheet update|V1|Load worksheet to ensure the entry submi
 additional\_entry|Enter invalid input Y|V1|When I enter a valid input of 'Y' I am expecting attack\_log function to run in terminal to allow user to enter another entry|Pass
 additional\_entry|Enter invalid input N|V1|When I enter a valid input of 'N' I am expecting start\_program function to run to reset the terminal to the beginning of the program|Pass
 additional\_entry|Enter valid input|V1|When I enter an invalid input I am expecting to see an error message due to validation|Pass
+
+# Libraries
+
+# Technologies Used
+
+# Deployment

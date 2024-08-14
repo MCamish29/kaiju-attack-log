@@ -182,7 +182,7 @@ def start_program():
     """
 
     print("Welcome to the Kaiju attack log terminal\n")
-    print("This terminal is designed to"
+    print("This terminal is designed to "
           + "log reports of Kaiju attacks in Tokyo.\n")
     print("If you select to enter a new entry "
           + "you will need to enter the following criteria:")
