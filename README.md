@@ -1,32 +1,64 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Kaiju Attack Log
 
-Welcome,
+The Kaiju Attack Log was inspired by a popular manga/ anime named Kaiju No.8, where large monsters (aka Kaiju) attack Japan. 
+The Kaiju Attack Log is an interactive terminal to enter details of Kaiju attacks as if the user was in the manga/ anime.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+![responsive-screenshot](assets/readme_images/responsive_test.webp)
 
-## Reminders
+[Click here to view](https://kaiju-attack-terminal-cf4d13c89f69.herokuapp.com/) 
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## Contents
 
-## Creating the Heroku app
+* [Program Flow Chart](#program-flow-chart)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+* [Features]()
+    * [Program start]()
+    * [New Entry to Kaiju attack log]()
+        * [Date entry]()
+        * [Threat level entry]()
+        * [Region entry]()
+    * [Additional entry]()
+    * [Return last entry]()
 
-1. `heroku/python`
-2. `heroku/nodejs`
+* [Future Enhancements]()
+* [Testing]()
+* [Libraries]()
+* [Technologies Used]()
+* [Deployment]()
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
 
-Connect your GitHub repository and deploy as normal.
 
-## Constraints
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## Program Flow Chart
 
----
+To understand the structure of the program, I created a flow chart using [Lucid Charts](https://lucid.app)
 
-Happy coding!
+![Kaiju attack log flowchart](assets/readme_images/flow.webp)
+
+# Features
+
+## Program start
+
+
+
+# Testing
+**Function**|**Test**|**Test Version**|**Expectation**|**Result**
+:-----:|:-----:|:-----:|:-----:|:-----:
+start\_program|Run program in terminal|V1|When I enter python3 run.py I am expecting the start\_program to begin, displaying all relevant print strings and input string|Pass
+start\_program|Enter invalid input|V1|When I enter an invalid input option I am expecting to see an error message due to validation|Pass
+start\_program|Enter return input|V1|When I enter 'return' I am expecting the previous entry on the Kaiju attack log to be returned to the terminal and then the additional\_entry function to run in the terminal|Pass
+start\_program|Enter new input|V1|When I enter 'new' I am expecting the next function to run in the terminal|Pass
+return\_last\_entry|Receiving the last entry in the terminal|V1|I am expecting the last entry on the worksheet to be displayed in the terminal and the additional\_entry function to run|Pass
+get\_date\_data|Run program in terminal|V1|After entering 'new' from the start\_program function I am expecting the get\_date\_data function to run|Pass
+get\_date\_data|Enter invalid input|V1|When I enter an invalid input format I am expecting to see an error message due to validation|Pass
+get\_date\_data|Enter valid input|V1|When I enter a valid input I am expecting to see a confirmation message and the get\_threat\_data function to run in the terminal|Pass
+get\_threat\_data|Enter invalid input|V1|When I enter an invalid input format I am expecting to see an error message due to validation|Pass
+get\_threat\_data|Enter valid input|V1|When I enter a valid input I am expecting to see a confirmation message the get\_region\_data function to run in the terminal|Pass
+get\_region\_data|Enter invalid input|V1|When I enter an invalid input format I am expecting to see an error message due to validation|Pass
+get\_region\_data|Enter valid input|V1|When I enter a valid input I am expecting to see a confirmation message |Pass
+update\_attack\_log|Run program in terminal|V1|After running get\_date\_data, get\_threat\_data and get\_region\_data I am expecting to see a message advising the user the information entered is updating the worksheet, a confirmation message of successful update to the worksheet and, additional\_entry function run in the terminal|Pass
+update\_attack\_log|Worksheet update|V1|Load worksheet to ensure the entry submitted has infact updated the worksheet|Pass
+additional\_entry|Enter invalid input Y|V1|When I enter a valid input of 'Y' I am expecting attack\_log function to run in terminal to allow user to enter another entry|Pass
+additional\_entry|Enter invalid input N|V1|When I enter a valid input of 'N' I am expecting start\_program function to run to reset the terminal to the beginning of the program|Pass
+additional\_entry|Enter valid input|V1|When I enter an invalid input I am expecting to see an error message due to validation|Pass
