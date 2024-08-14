@@ -39,7 +39,7 @@ def get_date_data():
         print("Date format should be dd/mm/yyyy.")
         print("Example: 01/01/2024\n")
 
-        date_str = input("Enter date of Kaiju attack here: ").strip()
+        date_str = input("Enter date of Kaiju attack here:\n").strip()
 
         if validate_date(date_str):
             print(Fore.GREEN
@@ -73,7 +73,7 @@ def get_threat_data():
         print("Threat level is between 1 and 5.")
         print("1 is the lowest threat and 5 is the highest threat level\n")
 
-        threat_str = input("Enter threat level of Kaiju attack here: ").strip()
+        threat_str = input("Enter threat level of Kaiju attack here:\n").strip()
 
         if validate_threat_level(threat_str):
             print(Fore.GREEN
@@ -122,7 +122,7 @@ def get_region_data():
               + "5 = Shinjuku, "
               + "6 = Other\n")
 
-        region_str = input("Enter the region of Kaiju attack here: ").strip()
+        region_str = input("Enter the region of Kaiju attack here:\n").strip()
 
         if validate_region(region_str):
             region_name = REGION[region_str]
@@ -191,7 +191,7 @@ def start_program():
     print("'region of attack'\n")
     start_program_str = input("To log a new entry please enter 'new', "
                               + "to display the previous entry"
-                              + "please enter 'return': ").strip().lower()
+                              + "please enter 'return':\n").strip().lower()
     print()
 
     if start_program_str == "new":
@@ -224,7 +224,7 @@ def additional_entry():
     print("Would you like to log another attack?")
     additional_entry_str = input("Please enter 'Y' to log another attack "
                                  + "or 'N' to return "
-                                 + "to menu: ").strip().lower()
+                                 + "to menu:\n").strip().lower()
     print()
     if additional_entry_str == "y":
         attack_log()
