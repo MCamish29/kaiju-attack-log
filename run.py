@@ -73,7 +73,8 @@ def get_threat_data():
         print("Threat level is between 1 and 5.")
         print("1 is the lowest threat and 5 is the highest threat level\n")
 
-        threat_str = input("Enter threat level of Kaiju attack here:\n").strip()
+        threat_str = input("Enter threat level "
+                           + "of Kaiju attack here:\n").strip()
 
         if validate_threat_level(threat_str):
             print(Fore.GREEN
@@ -172,7 +173,7 @@ def return_last_entry():
     attack_log_worksheet = SHEET.worksheet("attack_data")
     last_entry = attack_log_worksheet.get_all_values()[-1]
     return last_entry
-    
+
 
 # Main flow
 def start_program():
